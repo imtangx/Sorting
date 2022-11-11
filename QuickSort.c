@@ -7,39 +7,40 @@ void swap(int a[],int i,int j)
 }
 void quicksort(int a[],int left,int right)
 {
-	if(left>=right) //µİ¹éµ÷ÓÃÖĞµÄ£¨i-1£©¿ÉÄÜÔ½½ç£¬ËùÒÔÎª>=Ìõ¼ş 
+	if(left>=right) //i-1å¯èƒ½è¶Šç•Œï¼Œæ‰€ä»¥ä¸º>=æ¡ä»¶ 
 	return;
-	int target=a[right]; //Ã¿´ÎÑ¡×îºóÒ»¸öÔªËØ×÷Ä¿±êÖµ
-	//¿ìÂıÖ¸Õë 
+	int target=a[right]; //æ¯æ¬¡é€‰æœ€å³å…ƒç´ ä½œç›®æ ‡å€¼
+	//å¿«æ…¢æŒ‡é’ˆ 
 	int i=left;
-	int j=left-1; //++jµÄ´æÔÚ 
-	int k=right; //--kµÄ´æÔÚ£¬ÇÒ×îºóÒ»¸öÊıÏÈ²»ÅÅĞò 
-	while(i<k)
+	int j=left;
+	int k=right-1; //æœ€å³å…ƒç´ å…ˆä¸æ’åº 
+	while(i<=k)
 	{
 		if(a[i]==target)
-		{
-			i++;
-		}
+	    {
+	    	i++;
+	    }
 		else if(a[i]<target)
 		{
-			swap(a,i++,++j); //×¢Òâ 
-		}
-		else if(a[i]>target)
-		{
-			swap(a,i,--k); //×¢Òâ 
-		}
-	}
-	swap(a,k,right); //½«ÓÒÇøµÄµÚÒ»¸öÔªËØÓëÄ¿±êÖµ½»»» 
-	quicksort(a,left,i-1); 
-	quicksort(a,i,right);  
+	    	swap(a,i++,j++);
+	    }
+	    else if(a[i]>target)
+	    {
+	   		swap(a,i,k--);
+	   	}
+    }
+	swap(a,i,right); //é€€å‡ºå¾ªç¯ï¼Œiå¿…å®šä¸º(k+1)å³å³åŒºç¬¬ä¸€ä¸ªå…ƒç´ ä¸ç›®æ ‡å€¼äº¤æ¢ 
+	//é€’å½’è°ƒç”¨ 
+	quicksort(a,left,i-1);
+	quicksort(a,i,right);
 }
 int main()
 {
 	int i,a[]={};
 	int length=sizeof(a)/sizeof(a[0]);
 	quicksort(a,0,length-1);
-	//¼ìÑé
+	//æ£€éªŒ 
 	for(i=0;i<length;i++)
-	printf("%-3d",a[i]); 
+	printf("%-3d",a[i]);
 	return 0;
 }
